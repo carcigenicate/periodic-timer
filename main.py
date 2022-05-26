@@ -31,7 +31,7 @@ def _flash_window(hwnd: int):
 def _block_with_display(delay_secs: int, check_interval_secs: int = 1):
     start_time = time.time()
     end_time = start_time + delay_secs
-    total_minutes = (delay_secs // 60) + 1  # So we can get how many leading zeros to display
+    places = int(math.log10(delay_secs // 60)) + 1  # So we can get how many leading zeros to display
     while True:
         current = time.time()
         secs_left = end_time - current
@@ -40,7 +40,7 @@ def _block_with_display(delay_secs: int, check_interval_secs: int = 1):
 
         if secs_left > 0:
             print("\b" * 100, end="")
-            print(f"Remaining: {int(mins_left):0{int(math.log10(total_minutes))}}:{int(secs_leftover):02}", flush=True, end="")
+            print(f"Remaining: {int(mins_left):0{places}}:{int(secs_leftover):02}", flush=True, end="")
         else:
             return
 
