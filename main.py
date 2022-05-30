@@ -55,6 +55,7 @@ def timer_loop(remind_every_mins: int):
     while True:
         _block_with_display(remind_every_secs)
         _flash_window(terminal_hwnd)
+        print("\a", end="")
 
 
 if __name__ == "__main__":
